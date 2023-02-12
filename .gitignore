@@ -1,0 +1,6 @@
+local
+.python-version
+poetry.lock
+pyproject.toml
+.ipynb_checkpoints
+__pycache__
