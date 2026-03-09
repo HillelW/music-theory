@@ -439,7 +439,7 @@ $n = 12o + p$
 $o = \lfloor n / 12 \rfloor$, $p = n \bmod 12$
 
 **Interval (in semitones) between two notes:**
-$|n_2 - n_1|$
+$\lvert n_2 - n_1 \rvert$
 
 **Interval class between two pitch classes:**
 $(p_2 - p_1) \bmod 12$
@@ -462,7 +462,7 @@ The atomic unit of distance in the twelve-tone system is the semitone, the gap b
 
 But "distance" is not a single concept. It splits into two distinct measurements depending on whether octave and direction matter.
 
-The first measurement uses note numbers. Given two notes with note numbers $n_1$ and $n_2$, the signed interval is $n_2 - n_1$. A positive result means $n_2$ is higher than $n_1$ (ascending). A negative result means $n_2$ is lower (descending). The magnitude $|n_2 - n_1|$ gives the absolute distance in semitones, regardless of direction. This measurement is unbounded: the interval between the lowest and highest notes on a piano is 87 semitones, as computed in Worked Example 11. Note-number intervals carry full information about register, direction, and size.
+The first measurement uses note numbers. Given two notes with note numbers $n_1$ and $n_2$, the signed interval is $n_2 - n_1$. A positive result means $n_2$ is higher than $n_1$ (ascending). A negative result means $n_2$ is lower (descending). The magnitude $\lvert n_2 - n_1 \rvert$ gives the absolute distance in semitones, regardless of direction. This measurement is unbounded: the interval between the lowest and highest notes on a piano is 87 semitones, as computed in Worked Example 11. Note-number intervals carry full information about register, direction, and size.
 
 The second measurement discards octave information and works entirely within $\mathbb{Z}_{12}$. Given two pitch classes $p$ and $q$, the directed pitch-class interval upward is $(q - p) \bmod 12$. This counts how many semitones you traverse going up (clockwise on the circle) from p to q. The directed interval downward is $(p - q) \bmod 12$, counting semitones going the other direction. These two quantities always sum to 12, unless both are 0 (which happens only when $p = q$). If the upward interval from $p$ to $q$ is 4, the downward interval is 8. Four steps clockwise, eight steps counterclockwise: they meet at the same destination.
 
@@ -609,7 +609,7 @@ Compound intervals become especially important in the context of extended chords
 
 When analyzing not just a pair of notes but a collection of them, a useful tool is the interval vector, which tallies how many of each interval class appear among all pairs in the set.
 
-Given a set of pitch classes $S$ with $|S| = k$, there are $k(k-1)/2$ unordered pairs. For each pair, compute the interval class (a value from 1 to 6). The interval vector is the six-element list $[n_1, n_2, n_3, n_4, n_5, n_6]$, where $n_i$ is the number of pairs with interval class $i$.
+Given a set of pitch classes $S$ with $\lvert S \rvert = k$, there are $k(k-1)/2$ unordered pairs. For each pair, compute the interval class (a value from 1 to 6). The interval vector is the six-element list $[n_1, n_2, n_3, n_4, n_5, n_6]$, where $n_i$ is the number of pairs with interval class $i$.
 
 The interval vector ignores interval class 0 (pairs of identical pitch classes), since a set does not contain duplicates. It also folds the twelve directed intervals into six interval classes, using the convention that interval classes above 6 are reduced to their complement. Seven semitones (P5) becomes interval class 5. Eight semitones becomes interval class 4. And so on.
 
@@ -1596,7 +1596,7 @@ Other cadence types exist for comparison. A **half cadence** ends on V rather th
 
 When chord roots move by descending fifths (equivalently, ascending fourths), the result is a circle progression. The name comes from the circle of fifths: each root step traces one position counterclockwise.
 
-The full diatonic circle, starting from I and moving roots by descending fifths (subtracting 7, or equivalently adding 5, $\bmod$ 12):
+The full diatonic circle, starting from I and moving roots by descending fifths (subtracting 7, or equivalently adding 5, mod 12):
 
 I (root 0) to IV (root 5) to vii° (root 11) to iii (root 4) to vi (root 9) to ii (root 2) to V (root 7) to I (root 0)
 
@@ -2693,7 +2693,7 @@ Amiot, Emmanuel. *Music Through Fourier Space: Discrete Fourier Transform in Mus
 
 [^17]: The relationship between beating, roughness, and the perception of dissonance was first analyzed by Helmholtz in *On the Sensations of Tone*, Part II, chapter 10. The modern psychoacoustic model of roughness is elaborated in Ernst Terhardt, "Pitch, Consonance, and Harmony," *Journal of the Acoustical Society of America* 55, no. 6 (1974): 1061-1069; and in William A. Sethares, *Tuning, Timbre, Spectrum, Scale*, 2nd ed. (Springer, 2005), chapters 3-4.
 
-[^18]: This relationship between a scale's internal symmetry and the number of its distinct transpositions is a consequence of the orbit-stabilizer theorem in group theory. If a scale $S$ is invariant under a subgroup $H$ of the transposition group $\mathbb{Z}_{12}$, then the number of distinct transpositions of $S$ equals $[\mathbb{Z}_{12} : H] = 12 / |H|$. See Benson, *Music: A Mathematical Offering*, section 11.4; and Mazzola, *The Topos of Music*, chapter 11.
+[^18]: This relationship between a scale's internal symmetry and the number of its distinct transpositions is a consequence of the orbit-stabilizer theorem in group theory. If a scale $S$ is invariant under a subgroup $H$ of the transposition group $\mathbb{Z}_{12}$, then the number of distinct transpositions of $S$ equals $[\mathbb{Z}_{12} : H] = 12 / \lvert H \rvert$. See Benson, *Music: A Mathematical Offering*, section 11.4; and Mazzola, *The Topos of Music*, chapter 11.
 
 [^19]: The pair (2, 11) should be verified: $(11 - 2) \bmod 12 = 9$, and $(2 - 11) \bmod 12 = 3$; $\text{IC} = \min(9, 3) = 3$. So the pair (2, 11) contributes to IC 3. The four IC-3 pairs in the major scale are {0, 9}, {2, 5}, {2, 11}, and {4, 7}. See Straus, *Introduction to Post-Tonal Theory*, 4th ed., chapter 1, for interval vector computation methods.
 
